@@ -29,7 +29,6 @@ class FlightSearch:
         return response.json()["access_token"]
 
     def lookup_city(self,city):
-        # do some stuff to get city code
         header = {"Authorization": f"Bearer {self.api_token}"}
         query = {
             "keyword": city,
@@ -48,3 +47,19 @@ class FlightSearch:
             return "Not Found"
         return city_code
 
+    def getflights(self,departure_city,destination_city,departure_date,to_date):
+        header = {"Authorization": f"Bearer {self.api_token}"}
+        query = {
+            "originLocationCode": departure_city,
+            "destinationLocationCode": destination_city,
+            "departureDate": departure_date,
+            "returnDate": to_date,
+            "adults": 1,
+            "nonStop": "true",
+            "currencyCode": "GBP",
+            "max": "10"
+        }
+        response = requests.get(url="https://test.api.amadeus.com/v2/shopping/flight-offers", headers=header,
+                                params=query)
+        response.raise_for_status()
+        return response.json()

@@ -1,18 +1,12 @@
-
+import requests
 #Flight_API = test.api.amadeus.com/v2/shopping/flight-offers
 
 
 
 class FlightData:
     def __init__(self):
-        self.body = {
-            "originLocationCode": "LON",
-            "destinationLocationCode": city_code,
-            "departureDate": "2024-10-23",
-            # "returnDate": something,
-            "adults": 1,
-            # "children": 0,
-            # "infants": 0,
-            "nonStop": True,
-            "currencyCode": "GBP",
-        }
+        self.api_key = "IibJxzZqRpS1xkhQNC2Njkr5SUHbWg6o"
+        self.api_secret = "ZPy7T8TTd21tcuEB"
+        self.api_token = self.getnewtoken()
+        # self.departure_airport_code = self.getdepartureairportcode()
+
