@@ -4,9 +4,9 @@ import requests
 
 
 class FlightData:
-    def __init__(self):
-        self.api_key = "IibJxzZqRpS1xkhQNC2Njkr5SUHbWg6o"
-        self.api_secret = "ZPy7T8TTd21tcuEB"
-        self.api_token = self.getnewtoken()
-        # self.departure_airport_code = self.getdepartureairportcode()
+    def __init__(self,flight_data):
+        flight = flight_data["data"]
+        flight_price = flight[0]["price"]["grandTotal"]
+        destination_city = flight[0]["itineraries"][0]["arrival"]["iataCode"]
+        print(flight_price, destination_city)
 

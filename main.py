@@ -24,10 +24,13 @@ if sheet_data[0]["iataCode"] == "":
     data_manager.update_rows()
 
 # Find Flights
-destination = "PAR"
-tomorrow = datetime.now()+timedelta(days=1)
-departure_date = tomorrow.strftime("%Y-%m-%d")
-six_months_from_now = datetime.now()+timedelta(days=(6*30))
-to_date = six_months_from_now.strftime("%Y-%m-%d")
-avail_flights=flight_search.getflights(DEPARTURE_CITY,destination,departure_date,to_date)
-print(avail_flights)
+from flight_data import FlightData
+for row in sheet_data:
+    destination = row["iataCode"]
+    tomorrow = datetime.now()+timedelta(days=1)
+    departure_date = tomorrow.strftime("%Y-%m-%d")
+    six_months_from_now = datetime.now()+timedelta(days=(6*30))
+    to_date = six_months_from_now.strftime("%Y-%m-%d")
+    avail_flights=flight_search.getflights(DEPARTURE_CITY,destination,departure_date,to_date)
+    format_flights = FlightData(avail_flights)
+
